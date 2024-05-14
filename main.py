@@ -3,7 +3,7 @@ from typing import List
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI()
+app = FastAPI(title="Web Service Agent Valorant", description="Web Service untuk Tugas Praktikum Provis")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -52,11 +52,11 @@ valo_data = {"data":[
 async def root():
     return {"message": "Welcome to Valo API"}
 
-@app.get("/daftar_valo")
+@app.get("/daftar_agent_valo")
 async def get_valo():
     return valo_data
 
-@app.get("/detil_valo/{valo_id}", response_model=Valo)
+@app.get("/detail_agent_valo/{valo_id}", response_model=Valo)
 async def get_valo_detail(valo_id: str):
     for valo in valo_data["data"]:
         if valo["id"] == valo_id:
